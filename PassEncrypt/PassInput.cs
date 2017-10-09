@@ -33,5 +33,13 @@ namespace PassEncrypt
             }
             
         }
+
+        /// <summary>
+        /// Закрывает все открытые формы
+        /// </summary>
+        private void PassInput_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

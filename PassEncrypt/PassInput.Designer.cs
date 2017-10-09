@@ -73,6 +73,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PassInput";
             this.Text = "Ввод пароля";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PassInput_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
