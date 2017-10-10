@@ -20,6 +20,13 @@ namespace PassEncrypt
             richTextBox1.Text = key;
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NewPassInput newPassInput = new NewPassInput(key);
+            newPassInput.Show();
+            Hide();
+        }
+
         /// <summary>
         /// Закрывает все открытые формы
         /// </summary>
@@ -27,5 +34,6 @@ namespace PassEncrypt
         {
             Application.Exit();
         }
+
     }
 }

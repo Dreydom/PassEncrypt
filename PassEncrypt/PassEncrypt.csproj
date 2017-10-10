@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDenied.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.Designer.cs">
+      <DependentUpon>AccessDenied.cs</DependentUpon>
+    </Compile>
     <Compile Include="AccessGranted.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,12 @@
     <Compile Include="KeyInput.Designer.cs">
       <DependentUpon>KeyInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewPassInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPassInput.Designer.cs">
+      <DependentUpon>NewPassInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="PassInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,11 +78,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AccessDenied.resx">
+      <DependentUpon>AccessDenied.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AccessGranted.resx">
       <DependentUpon>AccessGranted.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyInput.resx">
       <DependentUpon>KeyInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPassInput.resx">
+      <DependentUpon>NewPassInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassInput.resx">
       <DependentUpon>PassInput.cs</DependentUpon>
