@@ -49,13 +49,12 @@ namespace PassEncrypt
         /// <param name="x">Длина ключа (по умолчанию равна 4, необязательный параметр).</param>
         private string GenKey(int x = 4)
         {
+            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             string key = "";
             var r = new Random();
             while (key.Length < x)
             {
-                Char c = (char)r.Next(33, 125);
-                if (Char.IsLetterOrDigit(c))
-                    key += c;
+                key += chars[r.Next(0, chars.Length)];
             }
             return key;
         }
