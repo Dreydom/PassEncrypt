@@ -46,7 +46,7 @@ namespace PassEncrypt
         /// <summary>
         /// Генерирует новый ключ и возвращает его.
         /// </summary>
-        /// <param name="x">Длина ключа (по умолчанию равна 4, необязательный параметр).</param>
+        /// <param name="x">Длина ключа (по умолчанию равна 4, необязательный параметр).</param> 
         private string GenKey(int x = 4)
         {
             string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
