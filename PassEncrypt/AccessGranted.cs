@@ -13,16 +13,18 @@ namespace PassEncrypt
     public partial class AccessGranted : Form
     {
         private string key;
-        public AccessGranted(string key)
+        private string drive;
+        public AccessGranted(string key, string drive)
         {
             InitializeComponent();
             this.key = key;
+            this.drive = drive;
             richTextBox1.Text = key;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NewPassInput newPassInput = new NewPassInput(key);
+            NewPassInput newPassInput = new NewPassInput(key, drive);
             newPassInput.Show();
             Hide();
         }

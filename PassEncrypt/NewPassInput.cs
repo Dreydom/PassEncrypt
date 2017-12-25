@@ -13,15 +13,17 @@ namespace PassEncrypt
     public partial class NewPassInput : Form
     {
         private string key;
+        private string drive;
         private Bitmap blink = Properties.Resources.blink;
         private Bitmap eye = Properties.Resources.eye;
-        private Encrypt encrypt = new Encrypt();
-        public NewPassInput(string key)
+        private Encrypt encrypt;
+        public NewPassInput(string key,string drive)
         {
             this.key = key;
+            this.drive = drive;
             InitializeComponent();
-            encrypt.Path = "pass.txt";
             AcceptButton = button1;
+            encrypt = new Encrypt(drive);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -46,7 +48,7 @@ namespace PassEncrypt
             }
             else
             {
-                AccessGranted accessGranted = new AccessGranted(encrypt.WritePass(newpass1));
+                AccessGranted accessGranted = new AccessGranted(encrypt.WritePass(newpass1),drive);
                 accessGranted.Show();
                 Hide();
             }

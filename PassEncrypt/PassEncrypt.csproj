@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,12 +59,7 @@
       <DependentUpon>AccessGranted.cs</DependentUpon>
     </Compile>
     <Compile Include="Encrypt.cs" />
-    <Compile Include="KeyInput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KeyInput.Designer.cs">
-      <DependentUpon>KeyInput.cs</DependentUpon>
-    </Compile>
+    <Compile Include="FileReader.cs" />
     <Compile Include="NewPassInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,9 +79,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AccessGranted.resx">
       <DependentUpon>AccessGranted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KeyInput.resx">
-      <DependentUpon>KeyInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewPassInput.resx">
       <DependentUpon>NewPassInput.cs</DependentUpon>

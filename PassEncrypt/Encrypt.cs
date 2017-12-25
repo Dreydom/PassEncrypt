@@ -13,20 +13,10 @@ namespace PassEncrypt
     /// </summary>
     class Encrypt
     {
-        private string path;
-        /// <summary>
-        /// Путь к файлу с зашифрованным паролем.
-        /// </summary>
-        public string Path
+        private string drive;
+        public Encrypt(string Drive)
         {
-            get
-            {
-                return path;
-            }
-            set
-            {
-                path = value;
-            }
+            this.drive = Drive;
         }
         /// <summary>
         /// Шифрует пароль. Возвращает зашифрованную строку.
@@ -59,13 +49,31 @@ namespace PassEncrypt
             return key;
         }
         /// <summary>
-        /// Зашифровывает и записывает новый пароль в файл. Возвращает новый ключ шифрования.
+        /// Зашифровывает и записывает новый пароль в нулевой сектор. Возвращает новый ключ шифрования.
         /// </summary>
         /// <param name="password">Пароль, который нужно зашифровать в файле</param>
         public string WritePass(string password)
         {
             string key = GenKey();
-            File.WriteAllText(path, Code(password, key));
+            string codpass = Code(password, key);
+            byte[] ByteBuffer = new byte[512];//задаем размер буфера
+            byte[] temp = new byte[8];
+            FileReader fr = new FileReader();
+            byte[] oldpass = new byte[8];
+            for (int i = 0; i < codpass.Length; i++)
+            {
+                oldpass[i] = (byte)codpass[i];
+            }
+            if (fr.OpenWrite(drive))
+            {
+
+                for (int i = 54; i < 62; i++)
+                {
+                    ByteBuffer[i] = oldpass[i - 54];
+                }
+                int count = fr.Write(ByteBuffer, 0, 512);
+                fr.Close();
+            }
             return key;
         }
         /// <summary>
@@ -75,10 +83,34 @@ namespace PassEncrypt
         /// <param name="key">Ключ шифрования</param>
         public bool CheckPass(string password, string key)
         {
-            if (String.Equals(Code(password, key), File.ReadAllText(path))) //тернарные операторы — зло
-                return true;
-            else
-                return false;
+            string codpass = Code(password, key);//кодирование пароля
+            byte[] ByteBuffer = new byte[512];//задаем размер буфера
+            byte[] temp = new byte[8];
+            bool flag = true;
+            FileReader fr = new FileReader();
+            if (fr.OpenRead(drive)) //вызов для чтения
+            {
+                int count = fr.Read(ByteBuffer, 512);
+
+                for (int i = 54; i < 62; i++)
+                {
+                    temp[i - 54] = ByteBuffer[i];
+                }
+                fr.Close();
+
+                byte[] oldpass = new byte[8];
+                for (int i = 0; i < codpass.Length; i++)
+                {
+                    oldpass[i] = (byte)codpass[i];
+                }
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if (temp[i] != oldpass[i])
+                        flag = false;
+                }
+            }
+            return flag;
         }
     }
 }
